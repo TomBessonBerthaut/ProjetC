@@ -6,7 +6,7 @@
 typedef struct vector {
     int x;                  // x coordinate of the vector
     int y;                  // y coordinate of the vector
-} vector*;
+} vector;
 
 typedef struct sun {
     int x;                  // x coordinate of the sun
