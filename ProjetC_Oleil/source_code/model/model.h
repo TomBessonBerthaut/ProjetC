@@ -48,7 +48,7 @@ typedef struct game {
     endArea* end;            // Coordiante you should aim for
 } game;
 
-//**********************FUNCTIONS**********************
+//**********************BUILDERS/DESTROYERS**********************
 
 vector* buildVector (int x, int y);
 void destructVector (vector* v);
@@ -61,5 +61,6 @@ void destructStartArea (startArea* sa);
 endArea* buildEndtArea (int x, int y);
 void destructEndArea (endArea* ea);
 
+//**********************FUNCTIONS**********************
 
 #endif
