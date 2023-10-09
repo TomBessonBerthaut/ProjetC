@@ -4,8 +4,8 @@
 //**********************STRUCTURS**********************
 
 typedef struct vector {
-    int x;                  // x coordinate of the vector
-    int y;                  // y coordinate of the vector
+    float x;                // x coordinate of the vector
+    float y;                // y coordinate of the vector
 } vector;
 
 typedef struct sun {
@@ -16,7 +16,7 @@ typedef struct sun {
 } sun;
 
 typedef struct planet {
-    int alpha;              // Position in radians on the orbit
+    float alpha;            // Position in radians on the orbit
     int r;                  // Radius of the planet
     int orbit;              // Planet radius orbit
     vector* v;              // Attractive force exerted by the planet on the ship
@@ -34,8 +34,8 @@ typedef struct endArea {
 } endArea;
 
 typedef struct ship {
-    int x;                  // x coordinate of the ship
-    int y;                  // y coordinate of the ship
+    float x;                // x coordinate of the ship
+    float y;                // y coordinate of the ship
     vector* v;              // Speed vector of the ship
     vector* tot;            // Sum of the forces applied on the ship
 } ship;
@@ -60,7 +60,11 @@ startArea* buildStartArea (int x, int y);
 void destructStartArea (startArea* sa);
 endArea* buildEndtArea (int x, int y);
 void destructEndArea (endArea* ea);
+void destructShip (ship* s);
+void destructGame (game* g);
 
 //**********************FUNCTIONS**********************
+
+void updateAllVectors (game* g);
 
 #endif

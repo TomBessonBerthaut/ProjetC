@@ -1,2 +1,2 @@
-Pour compiler : gcc source_code/model/model.c test.c -o ProjetC_oleil.exe
+Pour compiler : gcc -o ProjetC_oleil.exe test.c ./source_code/model/model.c ./source_code/model/model.h -lm
 Pour executer : ./ProjetC_oleil.exe
