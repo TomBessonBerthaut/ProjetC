@@ -12,14 +12,14 @@ typedef struct sun {
     int x;                  // x coordinate of the sun
     int y;                  // y coordinate of the sun
     int r;                  // Radius of the sun
-    vector* v;               // Attractive force exerted by the sun on the ship
+    vector* v;              // Attractive force exerted by the sun on the ship
 } sun;
 
 typedef struct planet {
     int alpha;              // Position in radians on the orbit
     int r;                  // Radius of the planet
     int orbit;              // Planet radius orbit
-    vector* v;               // Attractive force exerted by the planet on the ship
+    vector* v;              // Attractive force exerted by the planet on the ship
     sun* s;                 // Ptr towards the sun around which the planet orbits
 } planet;
 
@@ -36,16 +36,16 @@ typedef struct endArea {
 typedef struct ship {
     int x;                  // x coordinate of the ship
     int y;                  // y coordinate of the ship
-    vector* v;               // Speed vector of the ship
-    vector* tot;             // Sum of the forces applied on the ship
+    vector* v;              // Speed vector of the ship
+    vector* tot;            // Sum of the forces applied on the ship
 } ship;
 
 typedef struct game {
     planet** listPlanet;    // List of all the planet simulated
     sun** listSun;          // List of all the sun simulated
-    ship* s;                 // Ship
-    startArea* start;        // Coordinate where the ship spaws
-    endArea* end;            // Coordiante you should aim for
+    ship* s;                // Ship
+    startArea* start;       // Coordinate where the ship spaws
+    endArea* end;           // Coordiante you should aim for
 } game;
 
 //**********************BUILDERS/DESTROYERS**********************

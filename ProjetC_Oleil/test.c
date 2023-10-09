@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "model.h"
+#include "source_code/model/model.h"
 
 int main(){
-    printf("Hello wrold\n");
-}
+    vector* v = buildVector(56, 2);
+    printf("%d",v->x);
+    printf("\nHello wrold\n");
+} 
