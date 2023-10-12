@@ -22,6 +22,7 @@ sun* buildSun (int x, int y, int r){
     s->x = x;
     s->y = y;
     s->r = r;
+    s->v = buildVector(0, 0);
     return s;
 };
 
@@ -35,6 +36,7 @@ planet* buildPlanet (sun* s, int orbit, int r){
     p->s = s;
     p->orbit = orbit;
     p->r = r;
+    p->v = buildVector(0, 0);
     return p;
 };
 
@@ -104,7 +106,7 @@ void updateAllVectors (game* g){
         //                                             |ship's mass|
         tempVector.x = tempVector.x + g->listSun[i]->v->x;
         tempVector.y = tempVector.y + g->listSun[i]->v->y;
-    }
+    }/*
     for (int i = 0; i < (sizeof(g->listPlanet) / sizeof(g->listPlanet[0])); i++){   // Updating all planets vectors
         float pc[2];                                                                // Planet coords
         getPlanetCoords(g->listPlanet[i], pc);
@@ -117,7 +119,7 @@ void updateAllVectors (game* g){
         //                                               |ship's mass|
         tempVector.x = tempVector.x + g->listPlanet[i]->v->x;
         tempVector.y = tempVector.y + g->listPlanet[i]->v->y;
-    }
+    }*/
 
     // JE SUIS PAS CERTAIN D'AVOIR COMPRIS COMMENT LE VECTEUR VITESSE/ACCELERATION FONCTIONNE. DONC CETTE PARTIE EST PEU ETRE FAUSSE.
     g->s->v = g->s->tot;

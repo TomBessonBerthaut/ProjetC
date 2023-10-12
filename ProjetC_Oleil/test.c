@@ -11,8 +11,8 @@ int main(){
     ship *ship = calloc(1, sizeof(ship));
     ship->x = 0;
     ship->y = 0;
-    ship->v = NULL;
-    ship->tot = NULL;
+    ship->v = buildVector(0, 0);
+    ship->tot = buildVector(0, 0);
 
     g->s = ship;
 
@@ -23,5 +23,5 @@ int main(){
 
     updateAllVectors(g);
 
-    
+    return 0;
 } 
