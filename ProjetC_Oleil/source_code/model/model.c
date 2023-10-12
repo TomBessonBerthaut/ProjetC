@@ -3,6 +3,8 @@
 #include <math.h>
 #include "model.h"
 
+#define PI 3.14159
+
 
 vector* buildVector (int x, int y){
     vector* v = calloc(1, sizeof(vector));
@@ -89,7 +91,10 @@ void destructGame (game* g){
 
 
 void updateAllVectors (game* g){
-    for (int i = 0; i < (sizeof(g->listSun) / sizeof(g->listSun[0])); i++){
+    vector tempVector;                                                              // Temporary vector use calculate the sum of all the vectors
+    tempVector.x = 0;
+    tempVector.y = 0;
+    for (int i = 0; i < (sizeof(g->listSun) / sizeof(g->listSun[0])); i++){         // Updating all suns vectors
 
         g->listSun[i]->v->x = 1000 * g->listSun[i]->r * 20 * (g->listSun[i]->x - g->s->x) / powf(pow(g->listSun[i]->x - g->s->x, 2) + pow(g->listSun[i]->y - g->s->y, 2), 1.5);
         //                   | G | * |   Sun mass   | * || * |     delat x sun/ship     | / |    Distance between sun and ship squared time Distance between sun and ship    |
@@ -97,5 +102,30 @@ void updateAllVectors (game* g){
         g->listSun[i]->v->y = 1000 * g->listSun[i]->r * 20 * (g->listSun[i]->y - g->s->y) / powf(pow(g->listSun[i]->x - g->s->x, 2) + pow(g->listSun[i]->y - g->s->y, 2), 1.5);
         //                   | G | * |   Sun mass   | * || * |     delat y sun/ship     | / |    Distance between sun and ship squared time Distance between sun and ship    |
         //                                             |ship's mass|
+        tempVector.x = tempVector.x + g->listSun[i]->v->x;
+        tempVector.y = tempVector.y + g->listSun[i]->v->y;
     }
+    for (int i = 0; i < (sizeof(g->listPlanet) / sizeof(g->listPlanet[0])); i++){   // Updating all planets vectors
+        float pc[2];                                                                // Planet coords
+        getPlanetCoords(g->listPlanet[i], pc);
+
+        g->listPlanet[i]->v->x = 1000 * g->listPlanet[i]->r * 20 * (pc[0] - g->s->x) / powf(pow(pc[0] - g->s->x, 2) + pow(pc[1] - g->s->y, 2), 1.5);
+        //                      | G | * |   Sun mass      | * || * |delat x sun/ship|/ |Distance between sun and ship squared time Distance between sun and ship|
+        //                                               |ship's mass|
+        g->listPlanet[i]->v->y = 1000 * g->listPlanet[i]->r * 20 * (pc[1] - g->s->y) / powf(pow(pc[0] - g->s->x, 2) + pow(pc[1] - g->s->y, 2), 1.5);
+        //                      | G | * |   Sun mass      | * || * |delat y sun/ship|/ |Distance between sun and ship squared time Distance between sun and ship|
+        //                                               |ship's mass|
+        tempVector.x = tempVector.x + g->listPlanet[i]->v->x;
+        tempVector.y = tempVector.y + g->listPlanet[i]->v->y;
+    }
+
+    // JE SUIS PAS CERTAIN D'AVOIR COMPRIS COMMENT LE VECTEUR VITESSE/ACCELERATION FONCTIONNE. DONC CETTE PARTIE EST PEU ETRE FAUSSE.
+    g->s->v = g->s->tot;
+    g->s->tot->x = tempVector.x;
+    g->s->tot->y = tempVector.y;
 };
+
+void getPlanetCoords (planet* p, float* coords){                                        // Array to return x and y coords at the same time
+    coords[0] = p->orbit * cos(p->alpha * 180 / PI) + p->s->x;  // X coord
+    coords[1] = p->orbit * sin(p->alpha * 180 / PI) + p->s->y;  // Y coord
+}

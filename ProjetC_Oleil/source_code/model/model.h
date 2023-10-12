@@ -66,5 +66,6 @@ void destructGame (game* g);
 //**********************FUNCTIONS**********************
 
 void updateAllVectors (game* g);
+void getPlanetCoords (planet* p, float* coords);
 
 #endif
