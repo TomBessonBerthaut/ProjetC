@@ -4,6 +4,7 @@
 #include "model.h"
 
 #define PI 3.14159
+#define FPS 60
 
 
 vector* buildVector (int x, int y){
@@ -130,4 +131,12 @@ void updateAllVectors (game* g){
 void getPlanetCoords (planet* p, float* coords){                                        // Array to return x and y coords at the same time
     coords[0] = p->orbit * cos(p->alpha * 180 / PI) + p->s->x;  // X coord
     coords[1] = p->orbit * sin(p->alpha * 180 / PI) + p->s->y;  // Y coord
+}
+
+void moveShip (ship* s){
+    
+}
+
+void printVector (vector* v){
+    printf("Vecteur :\nX = %f\nY = %f\n", v->x, v->y);
 }

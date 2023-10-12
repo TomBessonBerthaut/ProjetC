@@ -16,9 +16,9 @@ int main(){
 
     g->s = ship;
 
-    sun *sun = buildSun(10, 10, 2);
+    sun *sun = buildSun(10, 5, 2);
     
-    g->listSun = calloc(1, sizeof(g->listSun));
+    g->listSun = calloc(2, sizeof(g->listSun));
     g->listSun[0] = sun;
 
     updateAllVectors(g);
