@@ -92,8 +92,14 @@ void destructGame (game* g){
 
 //*************************************************
 
+void updateAllPlanets (planet** listPlanet){                                                                // Take the list of all planets
+    for (int i = 0; i < (sizeof(listPlanet) / sizeof(listPlanet[0])); i++){                                 // Updating all planets angles
+        int senseOfRotation = listPlanet[i]->orbit > 0 ? 1 : 0;                                             // Get the rotation sense of the planet orbit
+        listPlanet[i]->alpha = listPlanet[i]->alpha + senseOfRotation * 2 * PI / (listPlanet[i]->r * FPS);  // Udpating the planet angle
+    }
+};
 
-void updateAllVectors (game* g){
+void updateAllVectors (game* g){                                                    // Take the whole game in order to get acces to all suns, planets and the ship
     vector tempVector;                                                              // Temporary vector use calculate the sum of all the vectors
     tempVector.x = 0;
     tempVector.y = 0;
@@ -131,13 +137,13 @@ void updateAllVectors (game* g){
 void getPlanetCoords (planet* p, float* coords){                                        // Array to return x and y coords at the same time
     coords[0] = p->orbit * cos(p->alpha * 180 / PI) + p->s->x;  // X coord
     coords[1] = p->orbit * sin(p->alpha * 180 / PI) + p->s->y;  // Y coord
-}
+};
 
 void moveShip (ship* s){
     s->x = s->x + (s->v->x / FPS);
     s->y = s->y + (s->v->y / FPS);
-}
+};
 
 void printVector (vector* v){
     printf("Vecteur :\nX = %f\nY = %f\n", v->x, v->y);
-}
+};

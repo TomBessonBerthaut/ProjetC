@@ -65,6 +65,7 @@ void destructGame (game* g);
 
 //**********************FUNCTIONS**********************
 
+void updateAllPlanets (planet** listPlanet);
 void updateAllVectors (game* g);
 void getPlanetCoords (planet* p, float* coords);
 void moveShip (ship* s);
