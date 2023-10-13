@@ -101,10 +101,10 @@ void updateAllVectors (game* g){
 
         g->listSun[i]->v->x = 1000 * g->listSun[i]->r * 20 * (g->listSun[i]->x - g->s->x) / powf(pow(g->listSun[i]->x - g->s->x, 2) + pow(g->listSun[i]->y - g->s->y, 2), 1.5);
         //                   | G | * |   Sun mass   | * || * |     delat x sun/ship     | / |    Distance between sun and ship squared time Distance between sun and ship    |
-        //                                             |ship's mass|
+        //                                        |ship's mass|
         g->listSun[i]->v->y = 1000 * g->listSun[i]->r * 20 * (g->listSun[i]->y - g->s->y) / powf(pow(g->listSun[i]->x - g->s->x, 2) + pow(g->listSun[i]->y - g->s->y, 2), 1.5);
         //                   | G | * |   Sun mass   | * || * |     delat y sun/ship     | / |    Distance between sun and ship squared time Distance between sun and ship    |
-        //                                             |ship's mass|
+        //                                        |ship's mass|
         tempVector.x = tempVector.x + g->listSun[i]->v->x;
         tempVector.y = tempVector.y + g->listSun[i]->v->y;
     }/*
@@ -134,7 +134,8 @@ void getPlanetCoords (planet* p, float* coords){                                
 }
 
 void moveShip (ship* s){
-    
+    s->x = s->x + (s->v->x / FPS);
+    s->y = s->y + (s->v->y / FPS);
 }
 
 void printVector (vector* v){
