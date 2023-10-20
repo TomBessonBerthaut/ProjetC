@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "model.h": "c",
+        "sdl2_gfxprimitives.h": "c",
+        "vue_controller.h": "c"
+    }
+}
